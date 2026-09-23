@@ -1,6 +1,28 @@
-// template_xfp7bn9
-// service_a9k4ngo
-// 7wmGDaO8T0Qh2X3sa
+let isModalOpen = false;
+let contrastToggle = false;
+constscaleFactor = 1 / 20
+
+function moveBackground(event) {
+    const shapes = document.querySelectorAll(".shape");
+    const x = event.clientX * scaleFactor;
+    const y = event.clienty * scaleFactor;
+
+    for (let i = 0; i < shapes.length; ++i) {
+        const isOdd = i % 2 !== 0;
+        const boolInt = isOdd ? -1 : 1;
+        shapes[i].style.transform = 'translate(${x * boolInt}px, ${y * boolInt}px)'
+    }
+}
+
+function toggleContrast() {
+    contrastToggle = !contrastToggle;
+    if (contrastToggle) {
+    document.body.classList.add("dark-theme");
+}
+else {
+    document.body.classList.remove("dark-theme")
+}
+}
 
 function contact(event) {
     event.preventDefault();
@@ -13,10 +35,12 @@ function contact(event) {
         'template_xfp7bn9',
         event.target,
         "7wmGDaO8T0Qh2X3sa"
-    ).then(() => {
+    )
+    .then(() => {
         loading.classList.remove("modal__overlay--visible");
         success.classList.add("modal__overlay--visible");
-    }).catch (() => {
+    })
+    .catch (() => {
         loading.classList.remove("modal__overlay--visible");
         alert(
             "The email service is temporarily unavailable. Please contact me at juandavid_0201@hotmail.com"
@@ -24,13 +48,12 @@ function contact(event) {
     })
 }
 
-let isModalOpen = false;
-function toggldModal () {
+function toggleModal () {
     if (isModalOpen) {
         isModalOpen = false;
         return document.body.classList.remove("modal--open")
     }
     isModalOpen = true;
-    document.body.classList += "modal--open";
+    document.body.classList.add("modal--open");
 
 }
